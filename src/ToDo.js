@@ -1,12 +1,43 @@
-import React from 'react';
-import { Button } from 'react-native';
+import React, {useState} from 'react';
+import {View, TextInput, StyleSheet, Button, Alert } from 'react-native';
 
 
-export const ToDo = () =>{
+export const ToDo = ({ onSubmit }) =>{
+    const [value, setValue] = useState('');
+
     const handleGood = () => {
-        alert('privet')
+        if (value.trim()){
+            onSubmit(value);
+            setValue('');
+        } else {
+            Alert.alert('Не порешали дела!')
+        }
     }
     return(
-        <Button title='Privet' onPress={handleGood}/>
+        <View style = {styles.block}>
+            <TextInput 
+                style = {styles.input}
+                onChangeText = {setValue}
+                value = {value}
+                placeholder = 'Дела деловые'>
+            </TextInput>
+            <Button title='Add' onPress={handleGood}/>
+        </View>
     )
 }
+
+const styles = StyleSheet.create({
+    block: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 15
+        
+    },
+    input: {
+        width: '70%',
+        borderStyle: 'solid',
+        borderBottomColor: '#3949ab',
+        borderBottomWidth: 2
+    }
+})
