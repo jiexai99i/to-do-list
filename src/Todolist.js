@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     todo:{
         flexDirection: 'row',
         ailignItems: 'center',
-        padding: 15,
+        padding: 14,
         borderWidth: 1,
         borderColor: '#eee',
         borderRadius: 5,
